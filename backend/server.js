@@ -15,7 +15,7 @@ const userRoutes = require('./routes/users');
 const resourceRoutes = require('./routes/resources');
 const uri = process.env.MONGO_URI;
 const app = express();
-const swaggerDocument = YAML.load(path.join( 'swagger.yaml'));
+const swaggerDocument = YAML.load(path.join(__dirname,'swagger.yaml'));
 // ===== Logger Middleware (Only in non-test) =====
 if (process.env.NODE_ENV !== 'test') {
   app.use((req, res, next) => {
@@ -93,7 +93,7 @@ const startServer = async () => {
       app.listen(PORT, "0.0.0.0", () => {
         console.log(`✅ Server running on port ${PORT}`);
         // console.log(`Swagger UI: http://localhost:${PORT}/api-docs`);
-        console.log(`Swagger UI:https://meetconnect-1.onrender.com/api-docs`);
+       
         console.log(`📍 Environment: ${process.env.NODE_ENV || 'development'}`);
       });
     }

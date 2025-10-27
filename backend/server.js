@@ -93,7 +93,7 @@ const startServer = async () => {
       app.listen(PORT, "0.0.0.0", () => {
         console.log(`✅ Server running on port ${PORT}`);
         // console.log(`Swagger UI: http://localhost:${PORT}/api-docs`);
-        console.log(`Swagger UI: https://almaprojects.onrender.com/api-docs`);
+        console.log(`Swagger UI:https://meetconnect-1.onrender.com/api-docs`);
         console.log(`📍 Environment: ${process.env.NODE_ENV || 'development'}`);
       });
     }

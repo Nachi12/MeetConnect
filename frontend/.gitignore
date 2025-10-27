@@ -1,0 +1,50 @@
+# --------------------------------------------------
+# 🔍 LOG FILES
+# --------------------------------------------------
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# --------------------------------------------------
+# 📦 DEPENDENCIES & BUILD OUTPUTS
+# --------------------------------------------------
+node_modules/
+dist/
+build/
+.out/
+.next/
+coverage/
+*.local
+
+# --------------------------------------------------
+# 💻 EDITOR & SYSTEM FILES
+# --------------------------------------------------
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# --------------------------------------------------
+# 🔐 ENVIRONMENT VARIABLES
+# --------------------------------------------------
+.env
+.env.*
+*.env
+.env.local
+.env.development.local
+.vercel
+# This ius the gitignore and this will update  in real
+
+# This is the VITE API
+# https://almaprojects.onrender.com
+
+# http://localhost:5001  https://almaprojects.onrender.com

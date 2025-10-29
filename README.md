@@ -1,5 +1,13 @@
 # connect
 
+Figma Design
+
+You can view the complete UI/UX design for this project on Figma here:  
+👉 [View Figma Design]([https://www.figma.com/file/your-design-link-here](https://www.figma.com/design/CtF7UWDB8UIoMp1s2sdKoj/MeetConnect?node-id=0-1&t=gLuq7LdnHgRaWzNj-1))
+
+
+
+
 A full-stack mock interview scheduling app for students to schedule interviews, track progress, and practice with curated resources.
 
 Badges: React 18 -  Redux Toolkit -  Node.js -  Express -  MongoDB -  Tailwind CSS -  Jest/Vitest

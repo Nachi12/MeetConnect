@@ -2,8 +2,9 @@
 
 Figma Design
 
-You can view the complete UI/UX design for this project on Figma here:  
-👉 [View Figma Design]([https://www.figma.com/file/your-design-link-here](https://www.figma.com/design/CtF7UWDB8UIoMp1s2sdKoj/MeetConnect?node-id=0-1&t=gLuq7LdnHgRaWzNj-1))
+You can view the complete UI/UX design for this project on Figma here:    
+👉 [View Figma Design](https://www.figma.com/design/CtF7UWDB8UIoMp1s2sdKoj/MeetConnect?node-id=0-1&t=gLuq7LdnHgRaWzNj-1)
+
 
 
 

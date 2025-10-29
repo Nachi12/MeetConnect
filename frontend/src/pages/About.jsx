@@ -12,7 +12,7 @@ const About = () => {
     {
       name: "Nachiketa NR",
       role: "MERN STACK DEVELOPER",
-      image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah",
+      image: "./public/Profile Pic.jpeg",
       linkedin: "https://www.linkedin.com/in/nachiketa12/",
       github: "https://github.com/Nachi12",
     },

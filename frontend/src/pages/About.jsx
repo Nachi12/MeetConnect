@@ -10,11 +10,11 @@ const About = () => {
   // Information for team members displayed under "Our Team"
   const team = [
     {
-      name: "Sarah Mitchell",
-      role: "Co-Founder & CEO",
+      name: "Nachiketa NR",
+      role: "MERN STACK DEVELOPER",
       image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah",
-      linkedin: "#",
-      twitter: "#",
+      linkedin: "https://www.linkedin.com/in/nachiketa12/",
+      github: "https://github.com/Nachi12",
     },
   ];
 

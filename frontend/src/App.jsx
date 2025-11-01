@@ -40,7 +40,8 @@ const useWarmupBackend = () => {
   useEffect(() => {
     const pingBackend = async () => {
       try {
-        await fetch("https://almaprojects.onrender.com"); 
+        await fetch("https://meetconnect-1.onrender.com"); 
+        // await fetch("http://localhost:5001"); 
         console.log("Backend warmed up");
       } catch (error) {
         console.log("Failed to ping backend:", error.message);

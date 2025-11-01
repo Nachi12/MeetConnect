@@ -12,7 +12,7 @@ const About = () => {
     {
       name: "Nachiketa NR",
       role: "MERN STACK DEVELOPER",
-      image: "./public/Profile Pic.jpeg",
+      image: "./Profile Pic.jpeg",
       linkedin: "https://www.linkedin.com/in/nachiketa12/",
       github: "https://github.com/Nachi12",
     },

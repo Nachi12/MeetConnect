@@ -40,8 +40,8 @@ const useWarmupBackend = () => {
     const pingBackend = async () => {
       try {
         // Ping backend to keep server active
-        // await fetch("https://almaprojects.onrender.com");
-        await fetch("http://localhost:5001");
+        await fetch("https://almaprojects.onrender.com");
+        // await fetch("http://localhost:5001");
         console.log("Backend warmed up");
       } catch (error) {
         console.log("Failed to ping backend:", error.message);

@@ -12,8 +12,9 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 
 const InterviewCarousel = ({ interviews, title }) => {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Hook for navigation
 
+  // Determine badge color based on interview status
   const getStatusColor = (status) => {
     switch (status) {
       case 'upcoming':
@@ -27,6 +28,7 @@ const InterviewCarousel = ({ interviews, title }) => {
     }
   };
 
+  // Format interview date for display
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString('en-US', {
       month: 'short',
@@ -35,6 +37,7 @@ const InterviewCarousel = ({ interviews, title }) => {
     });
   };
 
+  // Render fallback card when no interviews are available
   if (interviews.length === 0) {
     return (
       <Card className="shadow-lg">
@@ -48,6 +51,7 @@ const InterviewCarousel = ({ interviews, title }) => {
     );
   }
 
+  // Render carousel with interview cards
   return (
     <Card className="shadow-lg">
       <CardHeader>
@@ -95,8 +99,8 @@ const InterviewCarousel = ({ interviews, title }) => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
+          <CarouselPrevious /> {/* Navigate to previous slide */}
+          <CarouselNext />     {/* Navigate to next slide */}
         </Carousel>
       </CardContent>
     </Card>

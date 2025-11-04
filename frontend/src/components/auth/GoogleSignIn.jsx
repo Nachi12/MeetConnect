@@ -9,19 +9,20 @@ import { useDispatch } from 'react-redux';
 import { setCredentials } from '@/store/slices/authSlice';
 
 const GoogleSignIn = () => {
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false); // Tracks sign-in process state
+  const navigate = useNavigate(); // Navigation hook
+  const dispatch = useDispatch(); // Redux dispatcher
 
+  // Handle Google Sign-In process
   const handleGoogleSignIn = async () => {
     setLoading(true);
     try {
+      // Trigger Google authentication popup
       const result = await signInWithPopup(auth, googleProvider);
-      // signInWithRedirect(auth, provider);
       const user = result.user;
       const idToken = await user.getIdToken();
-      
-      // Send to backend to create/update user
+
+      // Send user info and token to backend for verification
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/google`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -30,10 +31,11 @@ const GoogleSignIn = () => {
           name: user.displayName,
           googleId: user.uid,
           profilePicture: user.photoURL,
-           idToken
+          idToken
         })
       });
 
+      // If backend returns success, update Redux and navigate
       if (response.ok) {
         const data = await response.json();
         dispatch(setCredentials({ user: data.user, token: data.token }));
@@ -43,12 +45,14 @@ const GoogleSignIn = () => {
         throw new Error('Failed to authenticate with backend');
       }
     } catch (error) {
+      // Display error message on failure
       toast.error(error.message || 'Failed to sign in with Google');
     } finally {
-      setLoading(false);
+      setLoading(false); // Reset loading state
     }
   };
 
+  // Render Google sign-in button
   return (
     <Button
       type="button"

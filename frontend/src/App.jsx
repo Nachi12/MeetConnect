@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster.jsx";
 import { Toaster as Sonner } from "@/components/ui/sonner.jsx";
@@ -24,41 +23,41 @@ import InterviewRoom from "./pages/InterviewRoom";
 
 const queryClient = new QueryClient();
 
-// Protected Route Component
+// Protected route wrapper to restrict access for unauthenticated users
 const ProtectedRoute = ({ children }) => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   if (!isAuthenticated) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/login" replace />; // Redirect if not authenticated
   }
 
-  return children;
+  return children; // Render protected page if authenticated
 };
 
-//  Wake up Render backend (Option 4)
+// Custom hook to keep backend server active
 const useWarmupBackend = () => {
   useEffect(() => {
     const pingBackend = async () => {
       try {
-        await fetch("https://meetconnect-1.onrender.com"); 
-        // await fetch("http://localhost:5001"); 
+        // Ping backend to keep server active
+        // await fetch("https://almaprojects.onrender.com");
+        await fetch("http://localhost:5001");
         console.log("Backend warmed up");
       } catch (error) {
         console.log("Failed to ping backend:", error.message);
       }
     };
 
-    // Ping once when app mounts
-    pingBackend();
+    pingBackend(); // Ping once on app mount
 
-    //  ping again every 10 minutes to keep it alive (if needed)
+    // Ping every 10 minutes to prevent server sleep
     const interval = setInterval(pingBackend, 10 * 60 * 1000);
-    return () => clearInterval(interval);
+    return () => clearInterval(interval); // Cleanup interval on unmount
   }, []);
 };
 
 const App = () => {
-  //  Wake up backend automatically
+  // Auto warmup backend when app starts
   useWarmupBackend();
 
   return (
@@ -78,7 +77,7 @@ const App = () => {
               <Route path="/reset-password" element={<ResetPassword />} />
               <Route path="/interview-room/:interviewId" element={<InterviewRoom />} />
 
-              {/* Protected Routes */}
+              {/* Protected Routes (requires authentication) */}
               <Route
                 path="/dashboard"
                 element={
@@ -112,7 +111,7 @@ const App = () => {
                 }
               />
 
-              {/* Catch-All Route */}
+              {/* 404 - Catch-All Route */}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>

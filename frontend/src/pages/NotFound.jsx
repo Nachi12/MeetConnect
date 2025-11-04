@@ -4,10 +4,12 @@ import { useEffect } from "react";
 const NotFound = () => {
   const location = useLocation();
 
+  // Log 404 error with attempted path
   useEffect(() => {
     console.error("404 Error: User attempted to access non-existent route:", location.pathname);
   }, [location.pathname]);
 
+  // Render 404 page UI
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-100">
       <div className="text-center">

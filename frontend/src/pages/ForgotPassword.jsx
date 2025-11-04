@@ -8,22 +8,26 @@ import { toast } from 'sonner';
 import { FaArrowLeft } from 'react-icons/fa';
 
 const ForgotPassword = () => {
+  // State variables
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const navigate = useNavigate();
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     try {
+      // Send POST request to API for password reset
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/forgot-password`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email })
       });
 
+      // Handle success or error responses
       if (response.ok) {
         setSubmitted(true);
         toast.success('Password reset link sent to your email!');
@@ -32,12 +36,14 @@ const ForgotPassword = () => {
         toast.error(data.message || 'Failed to send reset email');
       }
     } catch (error) {
+      // Handle network error
       toast.error('Network error. Please try again.');
     } finally {
       setLoading(false);
     }
   };
 
+  // Show confirmation card after submission
   if (submitted) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background p-4">
@@ -69,6 +75,7 @@ const ForgotPassword = () => {
     );
   }
 
+  // Show email input form before submission
   return (
     <div className="min-h-screen flex items-center justify-center bg-background p-4">
       <Card className="w-full max-w-md">

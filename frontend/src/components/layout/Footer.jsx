@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
-import { FaGithub, FaLinkedin, FaHeart, } from "react-icons/fa";
-import {SiNetlify } from "react-icons/si";
+import { FaGithub, FaLinkedin, FaHeart } from "react-icons/fa";
+import { SiNetlify } from "react-icons/si";
 import Logo from "@/components/ui/Logo.jsx";
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
+  const currentYear = new Date().getFullYear(); // Get current year dynamically
 
+  // Footer link sections
   const footerLinks = {
     product: [
       { label: "Features", href: "/about" },
@@ -24,6 +25,7 @@ const Footer = () => {
     ],
   };
 
+  // Social media link details
   const socialLinks = [
     { icon: FaGithub, href: "https://github.com/Nachi12", label: "GitHub" },
     { icon: FaLinkedin, href: "https://www.linkedin.com/in/nachiketa12/", label: "LinkedIn" },
@@ -40,6 +42,8 @@ const Footer = () => {
             <p className="mt-4 text-muted-foreground max-w-xs">
               Empowering students to ace their interviews with mock practice sessions and expert feedback.
             </p>
+
+            {/* Social Links */}
             <div className="flex gap-4 mt-6">
               {socialLinks.map((social) => (
                 <a
@@ -54,7 +58,7 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Links Sections */}
+          {/* Product Links Section */}
           <div>
             <h3 className="font-semibold mb-4 text-foreground">Product</h3>
             <ul className="space-y-2">
@@ -71,6 +75,7 @@ const Footer = () => {
             </ul>
           </div>
 
+          {/* Company Links Section */}
           <div>
             <h3 className="font-semibold mb-4 text-foreground">Company</h3>
             <ul className="space-y-2">
@@ -87,6 +92,7 @@ const Footer = () => {
             </ul>
           </div>
 
+          {/* Resources Links Section */}
           <div>
             <h3 className="font-semibold mb-4 text-foreground">Resources</h3>
             <ul className="space-y-2">
@@ -117,4 +123,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;  
+export default Footer;

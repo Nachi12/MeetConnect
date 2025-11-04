@@ -3,43 +3,43 @@ import { expect, afterEach, vi, beforeAll } from 'vitest';
 import { cleanup } from '@testing-library/react';
 import axios from 'axios';
 
-// Mock axios globally
+// Mock axios globally to prevent real API calls
 vi.mock('axios');
 
 beforeAll(() => {
-  // Default axios mock
+  // Define default axios mock implementations for HTTP methods
   axios.get = vi.fn().mockResolvedValue({ data: {} });
   axios.post = vi.fn().mockResolvedValue({ data: {} });
   axios.put = vi.fn().mockResolvedValue({ data: {} });
   axios.delete = vi.fn().mockResolvedValue({ data: {} });
 });
 
-// Cleanup after each test
+// Cleanup test environment after each test run
 afterEach(() => {
-  cleanup();
-  vi.clearAllMocks();
+  cleanup();          // Unmount React components
+  vi.clearAllMocks();  // Reset all mocks
 });
 
-// Mock window.matchMedia
+// Mock window.matchMedia for components using media queries
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: vi.fn().mockImplementation(query => ({
     matches: false,
     media: query,
     onchange: null,
-    addListener: vi.fn(),
-    removeListener: vi.fn(),
-    addEventListener: vi.fn(),
-    removeEventListener: vi.fn(),
+    addListener: vi.fn(),          // Deprecated API (still used in some libraries)
+    removeListener: vi.fn(),       // Deprecated API
+    addEventListener: vi.fn(),     // Modern API
+    removeEventListener: vi.fn(),  // Modern API
     dispatchEvent: vi.fn(),
   })),
 });
 
-// Mock IntersectionObserver
+// Mock IntersectionObserver for components using lazy loading or animations
 global.IntersectionObserver = class IntersectionObserver {
   constructor() {}
-  disconnect() {}
-  observe() {}
-  takeRecords() { return []; }
-  unobserve() {}
+  disconnect() {}       // Stops observing targets
+  observe() {}          // Starts observing a target
+  takeRecords() { return []; } // Returns no observed entries
+  unobserve() {}        // Stops observing a specific target
 };

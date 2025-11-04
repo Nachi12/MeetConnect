@@ -15,36 +15,39 @@ import {
   FaBookOpen,
   FaBars,
   FaTimes,
-  FaChevronDown, 
+  FaChevronDown,
 } from "react-icons/fa";
 import { cn } from "@/lib/utils";
 import Logo from "@/components/ui/Logo.jsx";
 
 const Header = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const dispatch = useDispatch();
-  const { isAuthenticated, user } = useSelector((state) => state.auth);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigate = useNavigate(); // For route navigation
+  const location = useLocation(); // For active route tracking
+  const dispatch = useDispatch(); // For Redux actions
+  const { isAuthenticated, user } = useSelector((state) => state.auth); // Auth state from Redux
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false); // Mobile menu toggle state
 
+  // Handle user logout
   const handleLogout = () => {
     dispatch(logout());
     navigate("/login");
   };
 
+  // Navigation links for authenticated users
   const navLinks = [
     { path: "/dashboard", label: "Schedule", icon: FaCalendarAlt },
     { path: "/interviews", label: "My Interviews", icon: FaBookOpen },
     { path: "/resources", label: "Practice Resources", icon: FaBookOpen },
   ];
 
+  // Check if a link is active
   const isActive = (path) => location.pathname === path;
 
   return (
     <header className="sticky top-0 z-50 w-full bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80 border-b border-border">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
-          {/* Logo */}
+          {/* Logo Section */}
           <Link
             to={isAuthenticated ? "/dashboard" : "/"}
             className="flex items-center space-x-2"
@@ -62,7 +65,7 @@ const Header = () => {
                   className={cn(
                     "flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200",
                     isActive(link.path)
-                      ? "bg-primary text-primary-foreground  "
+                      ? "bg-primary text-primary-foreground"
                       : "hover:bg-secondary text-foreground"
                   )}
                 >
@@ -77,6 +80,7 @@ const Header = () => {
           <div className="flex items-center gap-4">
             {isAuthenticated ? (
               <>
+                {/* User Dropdown Menu */}
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button variant="ghost" className="flex items-center gap-2">
@@ -113,6 +117,7 @@ const Header = () => {
                 </Button>
               </>
             ) : (
+              // Login / Signup Buttons for unauthenticated users
               <div className="flex gap-2">
                 <Button variant="ghost" onClick={() => navigate("/login")}>
                   Login
@@ -128,7 +133,7 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation Menu */}
         {isAuthenticated && mobileMenuOpen && (
           <nav className="md:hidden py-4 border-t border-border animate-fade-in">
             {navLinks.map((link) => (

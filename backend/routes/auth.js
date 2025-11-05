@@ -6,7 +6,7 @@ const User = require("../models/User");
 const { authenticate } = require("../middleware/auth"); // FIXED: Remove destructuring
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-const admin = require("../firebaseAdmin"); // Your firebase admin init file
+const admin = require("../firebaseAdmin"); //  firebase admin init file
 const crypto = require("crypto");
 
 // Generate JWT token

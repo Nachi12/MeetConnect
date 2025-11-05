@@ -150,38 +150,51 @@ const Signup = () => {
    * @async
    */
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    // Stop submission if validation fails
-    if (!validateForm()) return;
-    
-    // Show loading spinner and disable form
-    setLoading(true);
+  e.preventDefault();
 
-    // Simulate API call with timeout (replace with actual API call)
-    // TODO: Replace with actual backend API endpoint
-    setTimeout(() => {
-      // Dispatch user data to Redux store for global state management
-      dispatch(loginSuccess({
-        id: "1", // TODO: Replace with actual user ID from API response
-        name: formData.name,
-        email: formData.email,
-        contact: formData.contact,
-      }));
+  if (!validateForm()) return;
 
-      // Show success notification to user
-      toast({
-        title: "Registration Successful!",
-        description: "Welcome to connect",
-      });
+  setLoading(true);
 
-      // Redirect to dashboard after successful registration
-      navigate("/dashboard");
-      
-      // Reset loading state
+  try {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      toast({ title: "Signup Failed", description: data.message, variant: "destructive" });
       setLoading(false);
-    }, 1000);
-  };
+      return;
+    }
+
+    // ✅ Save Token and User
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("user", JSON.stringify(data.user));
+
+    dispatch(loginSuccess({ user: data.user, token: data.token }));
+
+    toast({ title: "Account Created!", description: "Welcome to Connect 🎉" });
+
+    navigate("/dashboard");
+  } catch (error) {
+    toast({ title: "Network Error", description: "Please try again", variant: "destructive" });
+  } finally {
+    setLoading(false);
+  }
+};
+
+
+
+
+
+
+
+
+
 
   /**
    * Handles Google OAuth signup button click
